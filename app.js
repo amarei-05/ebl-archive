@@ -29,7 +29,7 @@ const FIELDS = {
   real_name: { label: '본명', en: 'REAL NAME' },
   age: { label: '나이', en: 'AGE', suffix: '세' },
   height: { label: '키', en: 'HEIGHT', suffix: 'cm' },
-  combat_years: { label: '전투경험', en: 'COMBAT EXP.', suffix: '년' },
+  combat_years: { label: '전투경험', en: 'COMBAT EXP.', suffix: '년', blank: '없음' },
   infection: { label: '감염여부', en: 'INFECTION' },
   class: { label: '병과', en: 'CLASS' },
   branch: { label: '포지션', en: 'BRANCH' }
@@ -389,7 +389,7 @@ async function viewDetail(main, id) {
   const cells = INFO_ORDER.map(k => {
     const f = FIELDS[k];
     const v = String(o[k] || '').trim();
-    const val = v ? `${esc(v)}${f.suffix ? `<span class="unit">${f.suffix}</span>` : ''}` : '<span class="none">미기재</span>';
+    const val = v ? `${esc(v)}${f.suffix ? `<span class="unit">${f.suffix}</span>` : ''}` : f.blank ? esc(f.blank) : '<span class="none">미기재</span>';
     return `<div class="cell${INFO_WIDE.includes(k) ? ' wide' : ''}"><div class="cell-label">${f.label}<small>${f.en}</small></div><div class="cell-value">${val}</div></div>`;
   }).join('');
   const exam = o.exam || {};
@@ -558,7 +558,7 @@ function fieldHTML(k, o) {
   } else if (k === 'branch') {
     ctl = `<select id="f-${k}"></select>`;
   } else if (f.suffix) {
-    ctl = `<div class="suffix"><input type="text" id="f-${k}" value="${v}" maxlength="20"><span>${f.suffix}</span></div>`;
+    ctl = `<div class="suffix"><input type="text" id="f-${k}" value="${v}" maxlength="20"${f.blank ? ` placeholder="비워 두면 '${f.blank}'으로 표시돼요"` : ''}><span>${f.suffix}</span></div>`;
   } else {
     ctl = `<input type="text" id="f-${k}" value="${v}" maxlength="80">`;
   }
