@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Eisenbieder Lab.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="style.css">
+<script>try{var t=localStorage.getItem('ebl_theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="#list">
+      <span class="mark" aria-hidden="true"></span>
+      <span class="brand-txt"><b>EISENBIEDER LAB.</b><small>OPERATOR ARCHIVE</small></span>
+    </a>
+    <nav class="topnav">
+      <a class="navlink" href="#list" data-nav="list">목록</a>
+      <a class="btn btn-primary" href="#new" data-nav="new">+ 신규 등록</a>
+      <button class="btn btn-ghost theme-btn" id="theme" type="button" aria-label="밝은 화면과 어두운 화면 전환"><span class="theme-dot" aria-hidden="true"></span><span id="theme-label">LIGHT</span></button>
+    </nav>
+  </div>
+</header>
+<div class="demo" id="demo-banner" hidden><div class="demo-in">미리보기 모드 · 예시 데이터로 동작해요 · 편집 비밀번호는 <b>demo</b> · 새로고침하면 처음 상태로 돌아가요</div></div>
+<main class="wrap" id="main"></main>
+<footer class="sitefoot">
+  <div class="sitefoot-in">
+    <span>EISENBIEDER LAB. · PERSONNEL ARCHIVE</span>
+    <span>아이젠비더 연구소 오퍼레이터 기록 보관소 · 팬메이드 OC 아카이브</span>
+  </div>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
