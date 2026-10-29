@@ -704,11 +704,12 @@ input:focus, select:focus, textarea:focus { outline: 2px solid var(--accent); ou
 }
 .ex { display: grid; grid-template-rows: 1fr auto auto; gap: 10px; padding: 14px 18px 16px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); min-width: 0; }
 .ex-grade { font-size: 20px; font-weight: 700; line-height: 1.2; }
-.ex-bar { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 4px; }
+.ex-bar { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 4px; }
 .ex-bar i { height: 6px; background: var(--line); }
 .ex-bar i.on { background: var(--accent); }
 .ex-none .ex-grade { font-size: 14px; font-weight: 400; color: var(--muted); opacity: 0.7; }
 .ex-redact .ex-grade { color: var(--accent-ink); letter-spacing: 0.1em; }
+.ex-grade small { margin-left: 8px; font: 600 11px/1 var(--f-mono); letter-spacing: 0.08em; color: var(--muted); }
 .ex-redact .ex-bar i { background: repeating-linear-gradient(-45deg, var(--fg) 0 3px, transparent 3px 6px); }
 .notes { display: grid; gap: 10px; }
 .note { padding: 16px 18px 18px; background: var(--surface); border: 1px solid var(--line); min-width: 0; }
