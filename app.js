@@ -46,7 +46,7 @@ const EXAM = [
   { k: 'combat', label: '전투 기술력', en: 'COMBAT SKILL' },
   { k: 'arts', label: '아츠 적응성', en: 'ORIGINIUM ARTS ASSIMILATION' }
 ];
-const GRADES = ['일반', '보통', '표준', '우수', '탁월', '■■'];
+const GRADES = ['부족', '보통', '표준', '우수', '탁월', '■■'];
 const NOTES = [
   { k: 'personality', label: '성격', en: 'PERSONALITY' },
   { k: 'traits', label: '특징', en: 'TRAITS' },
@@ -97,7 +97,7 @@ function seed() {
       name_ko: '할라이트', name_en: 'Halite', title: '연구소 외곽 경비 책임자', gender: '여', race: '루포', origin: '우르수스',
       real_name: '(예시) 엘레나 소로카', age: '27', height: '178', combat_years: '6', infection: '비감염자',
       class: '디펜더', branch: '가디언',
-      exam: { physical: '우수', mobility: '보통', endurance: '탁월', tactical: '표준', combat: '우수', arts: '일반' },
+      exam: { physical: '우수', mobility: '보통', endurance: '탁월', tactical: '표준', combat: '우수', arts: '부족' },
       personality: '말수가 적고 원칙을 중시한다. 맡은 구역에서는 누구에게도 양보하지 않지만, 순찰이 끝나면 후배들에게 간식을 나눠 주는 다정한 면도 있다.',
       traits: '왼쪽 귀에 작은 흉터가 있다. 대형 방패를 한 손으로 다루며, 비번인 날에도 장비 점검을 거르지 않는다.',
       past: '우르수스 국경 지대의 자경단 출신. 감염자 습격 사건 이후 연구소에 경비 요원으로 합류했다. (예시 데이터)',
@@ -115,7 +115,7 @@ function seed() {
       name_ko: '모로우', name_en: 'Morrow', title: '아츠 응용 연구원', gender: '남', race: '페림', origin: '리타니아',
       real_name: '(예시) 비공개', age: '22', height: '163', combat_years: '2', infection: '감염자',
       class: '캐스터', branch: '체인 캐스터',
-      exam: { physical: '일반', mobility: '표준', endurance: '보통', tactical: '우수', combat: '표준', arts: '■■' },
+      exam: { physical: '부족', mobility: '표준', endurance: '보통', tactical: '우수', combat: '표준', arts: '■■' },
       personality: '호기심이 많고 실험 이야기만 나오면 말이 빨라진다.',
       traits: '항상 손때 묻은 실험 노트를 들고 다닌다.',
       voice: {
@@ -391,7 +391,7 @@ async function viewDetail(main, id) {
   }).join('');
   const exam = o.exam || {};
   const examHTML = EXAM.map(e => {
-    const g = exam[e.k] || '';
+    const g = exam[e.k] === '일반' ? '부족' : exam[e.k] || '';
     const lv = GRADES.indexOf(g);
     const cls = g === '■■' ? ' ex-redact' : g ? '' : ' ex-none';
     const bars = [0, 1, 2, 3, 4].map(i => `<i${lv >= i ? ' class="on"' : ''}></i>`).join('');
@@ -619,7 +619,7 @@ async function viewEdit(main, id) {
           <h3 class="fs-subtitle"><span>MEDICAL EXAMINATION</span>종합검진</h3>
           <div class="inputs inputs-3">${EXAM.map(e => `
             <div class="field"><label for="ex-${e.k}">${e.label}<small>${e.en}</small></label>
-              <select id="ex-${e.k}"><option value="">선택 안 함</option>${GRADES.map(g => `<option${(o.exam || {})[e.k] === g ? ' selected' : ''}>${g}</option>`).join('')}</select>
+              <select id="ex-${e.k}"><option value="">선택 안 함</option>${GRADES.map(g => `<option${((o.exam || {})[e.k] === '일반' ? '부족' : (o.exam || {})[e.k]) === g ? ' selected' : ''}>${g}</option>`).join('')}</select>
             </div>`).join('')}
           </div>
         </div>
